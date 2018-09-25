@@ -31,7 +31,7 @@ font_pos_x = 0
 font_pos_y = 0
 
 # getting font
-font = ImageFont.truetype("arial.ttf", fontsize)
+font = ImageFont.truetype(fontfile, fontsize)
 
 # caluclate position of text (centered)
 image_width = image.size[0]

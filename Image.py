@@ -16,7 +16,7 @@ text_alignment = "center"
 # portion of image width you want text width to be
 img_fraction = 1
 
-#
+# line height and width initial value
 line_height = 0
 line_width = 0
 

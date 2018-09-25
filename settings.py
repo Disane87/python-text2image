@@ -25,10 +25,11 @@ class Settings:
     # portion of image width you want text width to be
     img_fraction = 1
 
+    pexels_api_key = ""
+
     _settings = None
 
     def __init__(self, settings_file):
-
         self.txt_color = "white"
         self.fontfile = "font/LuckiestGuy.ttf"
         self.border = True
@@ -40,6 +41,8 @@ class Settings:
 
         # debug mode 
         self.debug = True
+
+        self.pexels_api_key = "[YOUR API KEY]"
 
         # wordpress settings
         self.wp_auto_upload = True # only valid if preview_mode is true

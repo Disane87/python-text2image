@@ -7,6 +7,7 @@ import re
 import requests
 import json
 import base64
+import webbrowser
 from settings import Settings
 
 def main():    
@@ -14,6 +15,10 @@ def main():
     source_image = "images/pexels-photo-442573.jpeg"
     txt = "Text automatisiert in Bilder"+os.linesep+"einfügen mit Python"
     settings = Settings("config.json")
+
+    #images = getPexelsPhotos("code", settings.pexels_api_key)
+    # for image in images['photos']:
+    #     webbrowser.open(image["url"])
 
     # internal settings, no need to change them!
     fontsize = 1
@@ -110,5 +115,22 @@ def main():
                 resp = requests.delete(settings.wp_url + '/media/'+str(postid))
                 print('DEBUG: Media with ID {} deleted.'.format(postid))
 
+def getPexelsPhotos(searchString, apiKey, itemsPerPage=30, page=1):
+    url = "https://api.pexels.com/v1/search"
+    querystring = {"query":searchString,"per_page":itemsPerPage,"pages":page}
+
+    headers = {
+        'Authorization': "Bearer {}".format(apiKey),
+        'Cache-Control': "no-cache",
+        'User-Agent': 'My User Agent 1.0',
+        'Postman-Token': "6b0ce672-7ad7-495a-9084-96b3c3a0ced5"
+    }
+
+    res = requests.request("GET", url, headers=headers, params=querystring,)
+
+    if(res.ok):
+        return json.loads(res.content.decode('utf-8'))
+    else:
+        return False
 main()
 

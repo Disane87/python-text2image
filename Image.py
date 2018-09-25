@@ -4,7 +4,7 @@ import re
 
 # settings
 source_image = "images/pexels-photo-442573.jpeg"
-txt = "Text automatisiert in Bilder "+os.linesep+" einfügen mit Python"
+txt = "Text automatisiert in Bilder"+os.linesep+"einfügen mit Python"
 txt_color = "white"
 fontsize = 1
 fontfile = "font/LuckiestGuy.ttf"
@@ -87,5 +87,5 @@ out = Image.alpha_composite(image, image_with_text)
 out.show()
 
 # save image
-file_name = re.sub(r"[^a-zA-Z0-9]","",txt.replace(" ", "_"))+'.png'
+file_name = re.sub(r"[^a-zA-Z0-9 | ]*","", txt).replace(" ", "_")+'.png'
 out.save(os.path.join(output_dir, file_name)) # save it

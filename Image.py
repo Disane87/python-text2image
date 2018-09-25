@@ -13,6 +13,7 @@ border_color = "black"
 border_size = 5
 output_dir = "output"
 text_alignment = "center"
+
 # portion of image width you want text width to be
 img_fraction = 1
 

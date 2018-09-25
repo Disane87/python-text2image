@@ -1,6 +1,7 @@
 import os 
 import json
 from json import JSONEncoder
+from collections import defaultdict
 
 class Settings:
 
@@ -46,12 +47,13 @@ class Settings:
         self.wp_url = "https://[YOUR URL]/wp-json/wp/v2"
         self.wp_auth_key = "[YOUR API KEY]"
         # portion of image width you want text width to be
-        img_fraction = 1
+        self.img_fraction = 1
 
         
         if(os.path.getsize(settings_file) > 0):
             sets = json.loads(open(settings_file, 'r', encoding='utf-8').read())
             for key, value in sets.items():
+                # s = defaultdict(self)
                 self[key] = value
         else:
             with open(settings_file, 'w+') as outfile:
@@ -62,11 +64,11 @@ class Settings:
         return _setting[name]
 
     def __getitem__(self, key):
-        return self[key]
+        return self.__dict__[key]
     
     def __setitem__ (self, key, value):
-        if key in self:
-            self[key] = value
+        if key in self.__dict__:
+            self.__dict__[key] = value
 
 class MyEncoder(JSONEncoder):
         def default(self, o):
